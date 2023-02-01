@@ -6,6 +6,11 @@ const Home = () => {
   const [fetchError, setFetchError] = useState(null)
   const [smoothies, setSmoothies] = useState(null)
 
+  function handleDelete(id) {
+    const filteredSmoothies = smoothies.filter(smoothie => smoothie.id !== id)
+    setSmoothies(filteredSmoothies)
+  }
+
   useEffect(() => {
     const fetchSmoothies = async () => {
 
@@ -39,7 +44,7 @@ const Home = () => {
           {/* order-by buttons */}
           <div className="smoothie-grid">
             {smoothies.map(smoothie => (
-              <SmoothieCard key={smoothie.id} smoothie={smoothie} />
+              <SmoothieCard key={smoothie.id} smoothie={smoothie} onDelete={handleDelete} />
             ))}
           </div>
         </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import supabase from '../config/supabaseConfigClient'
 
-export default function SmoothieCard({ smoothie }) {
+export default function SmoothieCard({ smoothie, onDelete }) {
 
   const navigate = useNavigate()
 
@@ -23,9 +23,10 @@ export default function SmoothieCard({ smoothie }) {
       }
 
       if (data) {
-        alert('Smoothie deleted')
+        // alert('Smoothie deleted')
         console.log(data)
-        window.location.reload()
+        onDelete(smoothie.id)
+        // window.location.reload()
       }
     }
   }
