@@ -28,6 +28,7 @@ const Create = () => {
       .insert([
         { title: title, method: method, rating: rating },
       ])
+      .select()
 
     if (error) {
       console.log(error)

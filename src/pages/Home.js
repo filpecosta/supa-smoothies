@@ -12,6 +12,7 @@ const Home = () => {
       let { data: smoothies, error } = await supabase
         .from('smoothies')
         .select('*')
+        .order('id', { ascending: true })
 
       if (error) {
         setFetchError('Could not fetch the smoothies')
