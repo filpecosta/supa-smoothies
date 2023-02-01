@@ -5,6 +5,7 @@ import supabase from "../config/supabaseConfigClient"
 const Home = () => {
   const [fetchError, setFetchError] = useState(null)
   const [smoothies, setSmoothies] = useState(null)
+  const [orderBy, setOrderBy] = useState('created_at')
 
   function handleDelete(id) {
     const filteredSmoothies = smoothies.filter(smoothie => smoothie.id !== id)
@@ -17,7 +18,7 @@ const Home = () => {
       let { data: smoothies, error } = await supabase
         .from('smoothies')
         .select('*')
-        .order('id', { ascending: true })
+        .order(orderBy, { ascending: false })
 
       if (error) {
         setFetchError('Could not fetch the smoothies')
@@ -34,14 +35,18 @@ const Home = () => {
 
     }
     fetchSmoothies()
-  }, [])
+  }, [orderBy])
 
   return (
     <div className="page home">
       {fetchError && (<p>{fetchError}</p>)}
       {smoothies && (
-        <div className="smoothies">
-          {/* order-by buttons */}
+        <div className="smoothies order-by">
+          <p>Order by</p>
+          <button onClick={() => setOrderBy('created_at')}>Time Created</button>
+          <button onClick={() => setOrderBy('title')}>Title</button>
+          <button onClick={() => setOrderBy('rating')}>Rating</button>
+          {orderBy}
           <div className="smoothie-grid">
             {smoothies.map(smoothie => (
               <SmoothieCard key={smoothie.id} smoothie={smoothie} onDelete={handleDelete} />

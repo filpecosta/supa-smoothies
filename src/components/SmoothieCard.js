@@ -6,6 +6,8 @@ export default function SmoothieCard({ smoothie, onDelete }) {
 
   const navigate = useNavigate()
 
+  const date = new Date(smoothie.created_at)
+
   async function handleDelete() {
     const response = window.confirm('Are you sure you want to delete this smoothie?')
     if (response) {
@@ -37,6 +39,7 @@ export default function SmoothieCard({ smoothie, onDelete }) {
       <div className='rating'>
         {smoothie.rating}
       </div>
+      <div>{date.toLocaleDateString('en-us')}</div>
       <div className='buttons'>
         <Link to={'/' + smoothie.id} >
           <i className='material-icons'>edit</i>
