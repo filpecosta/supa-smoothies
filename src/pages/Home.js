@@ -54,7 +54,9 @@ const Home = () => {
           </div>
         </div>
       )}
+      <div style={{ textAlign: 'center', margin: '30px' }}>Made by <a href="https://filipeleonardo.com">Filipe Leonardo</a></div>
     </div>
+
   )
 }
 

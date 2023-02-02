@@ -1,10 +1,9 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import supabase from '../config/supabaseConfigClient'
 
 export default function SmoothieCard({ smoothie, onDelete }) {
 
-  const navigate = useNavigate()
 
   const date = new Date(smoothie.created_at)
 
